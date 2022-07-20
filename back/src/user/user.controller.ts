@@ -18,6 +18,7 @@ import { UserService } from './user.service'
 @Controller('user')
 export class UserController {
 	constructor(private readonly userService: UserService) {}
+
 	@Get('profile')
 	@Auth()
 	async getProfile(@CurrentUser('id') id: number) {
@@ -43,7 +44,7 @@ export class UserController {
 	@Auth()
 	async subscribeToChannel(
 		@CurrentUser('id') id: number,
-		@Param('channelId') channelId: string,
+		@Param('channelId') channelId: string
 	) {
 		return this.userService.subscribe(id, +channelId)
 	}
